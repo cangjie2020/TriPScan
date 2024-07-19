@@ -115,6 +115,7 @@ condition <- list(N1 = c(3,4),N2 = c(5,6))
 tRNA_res <- diff_AC(AC_count = AC_count,condition = condition,replicates = T)
 ```
 
+Calculate the tRNA-index for each dataset in the Anticodon_counts_raw.txt file. After setting up the experimental and control groups, perform differential analysis between these groups.The first three columns are the anticodon, amino acid, and codon, respectively. Each subsequent column represents a sample, in the same order as in the Anticodon_counts_raw.txt file.
 ``` r
 head(tRNA_res[[1]])
 #>   Anticodon  AA Codon ..5.result_mim.mmu_more20.FB1.fq.gz.unpaired_uniq.bam
@@ -161,6 +162,7 @@ head(tRNA_res[[1]])
 #> 6                                           0.027289718
 ```
 
+For the differential tRNA-index matrix, if replicates = TRUE, differential expression analysis will be performed using DESeq2 to calculate the differential tRNA-index. If replicates = FALSE, NOISeq will be used for differential expression analysis. Since NOISeq uses simulation to calculate the FDR in the absence of biological replicates, the FDR may vary with each calculation.
 ``` r
 head(tRNA_res[[2]])
 #>      baseMean log2FoldChange      lfcSE       stat      pvalue       padj codon
@@ -172,6 +174,7 @@ head(tRNA_res[[2]])
 #> GGT 26600.685     0.15006894 0.11640318  1.2892168 0.197322714 0.39464543   GGT
 ```
 
+The differential tRNA-index volcano plot, by default, filters out codons with Padj < 0.05 as significantly different tRNA-index codons. Purple dots represent codons with significantly downregulated tRNA-index in the experimental group compared to the control group, orange dots represent codons with significantly upregulated tRNA-index, and gray dots represent codons without significant differences. The Padj and LFC thresholds can be set in the parameters.
 ``` r
 tRNA_res[[3]]
 ```
@@ -179,6 +182,8 @@ tRNA_res[[3]]
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
 ## Extract codon information at E, P, and A sites for each read from ribo-seq data
+
+
 
 ``` r
 load("C:/Users/96453/Desktop/ribowalts/reads_psite_list.rda")
