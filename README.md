@@ -58,8 +58,6 @@ geneinfo <- extractGeneInfo( gtf.path = "../Mus_musculus.GRCm39.110.chr.gtf")
 #> Import genomic features from the file as a GRanges object ... OK
 #> Prepare the 'metadata' data frame ... OK
 #> Make the TxDb object ...
-#> Warning in .get_cds_IDX(mcols0$type, mcols0$phase): The "phase" metadata column contains non-NA values for features of type
-#>   stop_codon. This information was ignored.
 #> OK
 ```
 
@@ -97,12 +95,6 @@ head(geneinfo)
 AC_count <- "../Anticodon_counts_raw.txt"
 condition <- list(N1 = c(3,4),N2 = c(5,6))
 tRNA_res <- diff_AC(AC_count = AC_count,condition = condition,replicates = T)
-#> estimating size factors
-#> estimating dispersions
-#> gene-wise dispersion estimates
-#> mean-dispersion relationship
-#> final dispersion estimates
-#> fitting model and testing
 ```
 
 ``` r
@@ -164,10 +156,6 @@ head(tRNA_res[[2]])
 
 ``` r
 tRNA_res[[3]]
-#> Warning: Removed 4 rows containing missing values or values outside the scale range
-#> (`geom_point()`).
-#> Warning: Removed 51 rows containing missing values or values outside the scale range
-#> (`geom_text_repel()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
@@ -266,8 +254,6 @@ head(peak_pic[[3]])
 
 ``` r
 peak_pic[[2]][[14]]
-#> Warning: Removed 588 rows containing missing values or values outside the scale range
-#> (`geom_text_repel()`).
 ```
 
 <img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" /> \##
