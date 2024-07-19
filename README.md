@@ -52,14 +52,22 @@ library(TriPScan)
 ```
 
 ## Genome annotation matrix
+Extract information from the GTF annotation file and generate a matrix. This sequence annotation file has 14 columns 
+and is a crucial file in this package. It will help screen different transcripts of the same gene and assist in calculating 
+the codons corresponding to the E, P, and A sites for each RPF.
+
+### input files
+
+gtf.path：Corresponding species gtf annotation file
 
 ``` r
-geneinfo <- extractGeneInfo( gtf.path = "../Mus_musculus.GRCm39.110.chr.gtf")
+geneinfo <- extractGeneInfo( gtf.path = "path/to/gtf")
 #> Import genomic features from the file as a GRanges object ... OK
 #> Prepare the 'metadata' data frame ... OK
 #> Make the TxDb object ...
 #> OK
 ```
+The reference annotation file 
 
 ``` r
 head(geneinfo)
