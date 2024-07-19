@@ -15,7 +15,7 @@ caused by tRNA expression differences during translation elongation.
 Furthermore, we can calculate the changes in translation efficiency of
 the genes at these differential ribosome stalling sites
 
-\##Dependencies
+## Dependencies
 
 TriPScan requires R version \>= 3.3.0 and the following packages:
 
@@ -257,8 +257,8 @@ peak_pic[[2]][[14]]
 ```
 
 <img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" /> \##
-To calculate the translation efficiency of differentially expressed
-peaks (diff-peak) genes
+
+## To calculate the translation efficiency of differentially expressed peaks (diff-peak) genes
 
 ``` r
 RNA<-read.table("../CDS/RNA.txt",sep = "\t",header = T)
