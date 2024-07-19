@@ -1,0 +1,31 @@
+Package: TriPScan
+Type: Package
+Title: Identify differential ribosome stalling sites caused by tRNA discrepancies.
+Version: 0.1.0
+Author: Zixin Cai, Yirong Wang.
+Maintainer: Zixin Cai <964530737@qq.com>
+Description: Translation elongation is a crucial step in the translation process,
+  and tRNA is an indispensable component during this process. 
+  If there are abnormalities in tRNA expression, it may lead to changes in the 
+  ribosome translation speed during the elongation process. Based on tRNA-seq and 
+  Ribo-seq data, we have identified differential ribosome stalling sites caused by 
+  tRNA expression differences during translation elongation. Furthermore, 
+  we can calculate the changes in translation efficiency of the genes at these 
+  differential ribosome stalling sites
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports: 
+    data.table,
+    DESeq2,
+    dplyr,
+    GenomicFeatures,
+    ggplot2,
+    ggrepel,
+    NOISeq,
+    rtracklayer,
+    tidyr,
+    Biostrings
+Depends: 
+    R (>= 2.10)
