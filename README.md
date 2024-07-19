@@ -66,10 +66,6 @@ geneinfo <- extractGeneInfo( gtf.path = "path/to/gtf")
 #> Prepare the 'metadata' data frame ... OK
 #> Make the TxDb object ...
 #> OK
-```
-The reference annotation file 
-
-``` r
 head(geneinfo)
 #>               gene_id            tx_name  tx_id nexon tx_len cds_len utr5_len
 #>                <char>             <char>  <int> <int>  <int>   <int>    <int>
