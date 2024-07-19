@@ -15,6 +15,18 @@ caused by tRNA expression differences during translation elongation.
 Furthermore, we can calculate the changes in translation efficiency of
 the genes at these differential ribosome stalling sites
 
+## The main functions 
+
+1)extractGeneInfo : Extract genome information
+
+2)diff_AC : Identifying differential tRNA-index
+
+3)EPA_res : Extract codon information at E, P, and A sites for each RPF from ribo-seq data
+
+4)tRNA_diff_peak : Combine the results of EPA_res and diff_AC to identify the differential peaks caused by tRNA
+
+5)TE_peak : To calculate the translation efficiency of differentially expressed peaks (diff-peak) genes
+
 ## Dependencies
 
 TriPScan requires R version \>= 3.3.0 and the following packages:
@@ -51,7 +63,7 @@ To load TriPScan run
 library(TriPScan)
 ```
 
-## Genome annotation matrix
+## Extract genome information
 
 Extract information from the GTF annotation file and generate a matrix. This sequence annotation file has 14 columns 
 and is a crucial file in this package. It will help screen different transcripts of the same gene and assist in calculating 
@@ -185,7 +197,7 @@ tRNA_res[[3]]
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
-## Extract codon information at E, P, and A sites for each read from ribo-seq data
+## Extract codon information at E, P, and A sites for each RPF from ribo-seq data
 
 Obtain the position of the P-site on the transcript for each RPF using ribowalts with Ribo-seq data. Based on this result, determine the codons corresponding to the E, P, and A sites for each RPF.
 ### input files
@@ -235,7 +247,7 @@ head(EPA_result[[1]])
 
 ## Combine the results of EPA_res and diff_AC to identify the differential peaks caused by tRNA
 
-
+Combine the output results of the EPA_res and diff_AC functions to identify differential peak ratios, and create bar plots for genes with sites that have significant differences in peak ratios, visually highlighting these sites.
 ### input
 EPA_path : a list, List the results of EPA_res in the order of the experimental group and the control group. (e.g if replicates = F  EPA_path <- list(S1 = list(EPA_result[[1]]), S2 = list(EPA_result[[2]])), if replicates = T  EPA_path <- list(S1 = list(EPA_result[[1]],EPA_result[[2]]),S2 = list(EPA_result[[3]],EPA_result[[4]])))
 
@@ -293,21 +305,19 @@ head(peak_pic[[1]])
 #> 6:     6     TGG
 ```
 
-
+bar plots showing the RPF distribution at each site for genes where the peak difference exceeds min_diff. The x-axis of the plot represents the distance from the site to the start codon of the transcript, and the y-axis represents the RPF counts at each site. The red dashed line indicates the position of the differential peak, with text labels showing the A-site codon of the differential peak.
 ``` r
 peak_pic[[2]][[14]]
 ```
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" /> \##
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" /> 
 
 ## To calculate the translation efficiency of differentially expressed peaks (diff-peak) genes
 
-``` r
-RNA<-read.table("../CDS/RNA.txt",sep = "\t",header = T)
-CDS<-read.table("../CDS/CDS.txt",sep = "\t",header = T)
-condition <- c("Heart","Liver")
-TE_pic<- TE_peak(RNA_count = RNA,CDS_count = CDS,gene = geneinfo,peak_pic = peak_pic ,condition = condition ,replicates = 2 ,gene_id = F)
-```
+Calculate the translation efficiency of genes identified with differential peaks by tRNA_diff_peak.
+### input
+RNA_count : Transcriptome result matrix, with the first column as gene ID/transcript ID, followed by columns for gene counts in different samples
 
+CDS_count : ribo-seq results matrix, with the first column being gene ID/transcript ID, followed by several columns representing the RPF of different samples
 ``` r
 head(RNA)
 #>              tx_name SRR70 SRR71 SRR74  SRR75
@@ -326,7 +336,30 @@ head(CDS)
 #> 5 ENSMUST00000000080   509   455   147   212
 #> 6 ENSMUST00000000087   121   123    38   102
 ```
+gene : The output of geneinfo, a Genome annotation matrix
 
+peak_pic : The output of tRNA_diff_peak
+
+condition : Two strings, The names of the experimental group and the control group.(e.g. condition <- c("Heart","Liver"))
+
+replicates : If the number of biological replicates is the same for both the experimental and control groups, input only one number. If they are different, input the number of biological replicates for both the experimental and control groups separately (e.g replicates = c(2,3)).
+
+gene_id : If the first column of RNA_count and CDS_count is gene ID, then gene_id = T. If it is transcript ID, then gene_id = F.default is gene_id = T
+
+min_RNA : The minimum threshold for the average gene expression level in the transcriptomic matrix.
+
+min_CDS : The minimum threshold for the average RPF level in the ribo-seq results matrix.
+
+``` r
+RNA<-read.table("../CDS/RNA.txt",sep = "\t",header = T)
+CDS<-read.table("../CDS/CDS.txt",sep = "\t",header = T)
+condition <- c("Heart","Liver")
+TE_pic<- TE_peak(RNA_count = RNA,CDS_count = CDS,gene = geneinfo,peak_pic = peak_pic ,condition = condition ,replicates = 2 ,gene_id = F)
+```
+
+### output
+
+The translation efficiency of all genes for each sample.
 ``` r
 head(TE_pic[[1]])
 #>                         SRR86       SRR87     SRR90     SRR91
@@ -338,6 +371,7 @@ head(TE_pic[[1]])
 #> ENSMUST00000000087  0.2478779   0.3607961 0.1876004 0.3920122
 ```
 
+A bar plot showing the translation efficiency of genes with differential peaks identified by tRNA_diff_peak in both the experimental and control groups.
 ``` r
 TE_pic[[3]][[14]]
 ```
