@@ -297,8 +297,7 @@ head(peak_pic[[1]])
 ``` r
 peak_pic[[2]][[14]]
 ```
-
-<img src="man/figur.es/README-unnamed-chunk-15-1.png" width="100%" /> \##
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" /> \##
 
 ## To calculate the translation efficiency of differentially expressed peaks (diff-peak) genes
 
