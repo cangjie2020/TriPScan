@@ -35,7 +35,7 @@ EPA_res <- function(cdna_path, reads_psite_list, geneinfo, tx_scale = "the_longe
     EPA_res <- A[which(A[, 1] %in% geneinfo$tx_name), ]
     colnames(EPA_res) <- c("tx_name", "trans.site")
     EPA_res <- EPA_res[which(EPA_res$tx_name %in% names(sequences)), ]
-
+    EPA_res<-EPA_res[-which(EPA_res$trans.site < 4),]
     EPA_res$E_Codon <- as.character(Biostrings::subseq(sequences[as.character(EPA_res$tx_name)],
       start = EPA_res$trans.site - 3,
       end = EPA_res$trans.site - 1
