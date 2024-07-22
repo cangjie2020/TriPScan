@@ -41,7 +41,7 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
                            min_diff = 3, diff_tRNA_num = 8, padj = 0.05, LFC = 0, min_count = 10,
                            Non_translation_Elongation = 5, peak_method = "mean", only_both = F,
                            bar_color = "#1F78B4", line_color = "#FE4A01") {
-  tRNA <- tRNA_res$result
+  tRNA <- tRNA$result
   gene <- geneinfo
   gene <- gene[which(gene$transcript_biotype == "protein_coding"), ]
   gene <- gene[which(gene$cds_len %% 3 == 0), ]
