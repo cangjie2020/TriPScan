@@ -80,6 +80,9 @@ Extract information from the GTF annotation file and generate a matrix. This seq
 geneinfo <- extractGeneInfo( gtf.path = "../Mus_musculus.GRCm39.110.chr.gtf")
 ```
 ### Output
+
+`geneinfo`
+
 |  gene_id  |  tx_name  |  tx_id  |  nexon  |  tx_len  |  cds_len  | utr5_len | utr3_len | gene_name | gene_biotype | transcript_biotype | protein_id | chrom | strand |
   |:------:|:-----:|:------:|:------:|:------:|:------:|:------:|:-----:|:------:|:-----:|:------:|:------:|:------:|:------:|
   |  ENSMUSG00000000001  |  ENSMUST00000000001  |  26866  |  9  |  3262  |  1065  |141|  2056  |  Gnai3  |  protein_coding  |  protein_coding  | ENSMUSP00000000001 |3  | - |
