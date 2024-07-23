@@ -6,6 +6,7 @@
 # __TriPScan__
 
 ## Table of Contents
+
 * [Overview](https://github.com/cangjie2020/Tripscan#overview)
 * [Before Starting](https://github.com/cangjie2020/Tripscan#before-starting)
     - [Dependencies](https://github.com/cangjie2020/Tripscan#dependencies)
@@ -28,6 +29,7 @@
     - [Output](https://github.com/cangjie2020/Tripscan#output-4)
 
 ## Overview
+
 Translation elongation is a critical step in the protein synthesis process, with tRNA being an indispensable component. Abnormalities in tRNA expression can significantly impact ribosome translation speed during elongation. Utilizing tRNA-seq, Ribo-seq and mRNA-Seq data, our package identifies differential ribosome stalling sites associated with variations in tRNA expression during translation elongation. Additionally, we provide tools to calculate changes in translation efficiency for Ribosome Stalling Signal (RSS) genes. By integrated Trio-translatome Profiling for Scanning (__TriPScan__) elongation regulatory events, our package can rapidly and accurately identify Ribosome Stalling Signal genes across the genome, providing valuable insights into the impact of tRNA expression on translation dynamics.
 
 ------------------------------------------------------------------------
@@ -72,8 +74,11 @@ library(TriPScan)
 ------------------------------------------------------------------------
 
 ## Extracting the Genome Information
+
 Extract information from the GTF annotation file and generate a matrix. This sequence annotation file, containing 14 columns, is essential for these tools. It facilitates the screening of different transcripts of the same gene and aids in calculating the codons corresponding to the E, P, and A sites for each ribosome-protected fragment (RPF).
+
 ### Input
+
 `gtf.path` ：Corresponding species gtf annotation file
 
 ``` r
@@ -93,7 +98,8 @@ geneinfo <- extractGeneInfo( gtf.path = "../Mus_musculus.GRCm39.110.chr.gtf")
 |  ENSMUSG00000000028  |  ENSMUST00000115585  |  124153  |  5  |  832  |  410 | 422 | 0 |  Cdc45  |  protein_coding  |  protein_coding  | ENSMUSP00000111248 |16  | - |
 
 ## Identifying Codon Differential tRNA-index
-Utilize mim-tRNAseq or other advanced tRNA expression analysis tools to determine the expression levels of anticodons, as recorded in "Anticodon_counts_raw.txt". Then, taking into account tRNA wobble effects, calculate the expression levels of codons corresponding to these anticodons. These measurements, derived from tRNA-seq data, are termed the codon tRNA-index. Conclude the section by identifying the differential tRNA-index across various groups.
+
+Utilize mim-tRNAseq or other advanced tRNA expression analysis tools to determine the expression levels of anticodons, as recorded in "Anticodon_counts_raw.txt". Then, taking into account tRNA wobble effects, calculate the expression levels of codons corresponding to these anticodons. These measurements, derived from tRNA-seq data, are termed the tRNA-index of codon. Conclude the section by identifying the differential codon tRNA-index across various groups.
 
 ### Input
 
@@ -127,7 +133,7 @@ tRNA_res <- diff_AC(AC_count = AC_count,condition = condition,replicates = T)
 
 ### Output
 
-Calculate the tRNA-index for each dataset listed in the “Anticodon_counts_raw.txt” file. After defining the experimental and control groups, perform differential analyses between these groups.The first three columns of the file represent the anticodon, amino acid, and codon, respectively. Each subsequent column corresponds to a sample, arranged in the same order as specified in the “Anticodon_counts_raw.txt” file.
+Calculate the tRNA-index of codon for each dataset listed in the “Anticodon_counts_raw.txt” file. After defining the experimental and control groups, perform differential analyses between these groups.The first three columns of the file represent the anticodon, amino acid, and codon, respectively. Each subsequent column corresponds to a sample, arranged in the same order as specified in the “Anticodon_counts_raw.txt” file.
 
 `tRNA_res[[1]]`
 
@@ -157,7 +163,7 @@ For the codon differential tRNA-index matrix, the method of analysis depends on 
 |26600.685|0.15006894|0.11640318|1.2892168|0.197322714|0.39464543|GGT |
 
 
-The differential tRNA-index volcano plot, by default, identifies codons as significantly different if their adjusted p-value (Padj) is less than 0.05. In the plot, purple dots represent codons with significantly downregulated tRNA-index in the experimental group compared to the control group. Orange dots denote codons with significantly upregulated tRNA-index, and gray dots indicate codons without significant differences. Users can adjust the Padj and LFC thresholds via the plot parameters.
+The codon differential tRNA-index volcano plot, by default, identifies codons as significantly different if their adjusted p-value (Padj) is less than 0.05. In the plot, purple dots represent codons with significantly downregulated tRNA-index in the experimental group compared to the control group. Orange dots denote codons with significantly upregulated tRNA-index, and gray dots indicate codons without significant differences. Users can adjust the Padj and LFC thresholds via the plot parameters.
 
 `tRNA_res[[3]]`
 
