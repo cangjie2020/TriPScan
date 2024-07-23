@@ -29,6 +29,7 @@ diff_AC <- function(AC_count, condition, replicates, LFC = 0, Padj = 0.05, color
     AC_count <- read.table(AC_count, sep = "\t", header = T)
     AC_count <- tidyr::separate(data = AC_count, col = Anticodon, into = c("tRNA", "AA", "Anticodon"), sep = "-", remove = F)
     AC_count <- AC_count[!grepl("mito", AC_count$tRNA), ]
+    AC_count <- AC_count[!grepl("plastid", AC_count$tRNA), ]
     AC_count <- AC_count[, -c(1, ncol(AC_count))]
 
     AA <- read.table("./inst/extdata/AA.txt", sep = "\t", header = T)
