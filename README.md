@@ -28,7 +28,7 @@
     - [Output](https://github.com/cangjie2020/Tripscan#output-4)
 
 ## Overview
-Translation elongation is a critical step in the protein synthesis process, with tRNA being an indispensable component. Abnormalities in tRNA expression can significantly impact ribosome translation speed during elongation. Utilizing tRNA-seq, Ribo-seq and mRNA-Seq data, our package identifies differential ribosome stalling sites associated with variations in tRNA expression during translation elongation. Additionally, we provide tools to calculate changes in translation efficiency for Ribosome Stalling Signal (RSS) genes. By integrated Trio-translatome Profiling for Scanning (TriPScan) elongation regulatory events, our package can rapidly and accurately identify Ribosome Stalling Signal genes across the genome, providing valuable insights into the impact of tRNA expression on translation dynamics.
+Translation elongation is a critical step in the protein synthesis process, with tRNA being an indispensable component. Abnormalities in tRNA expression can significantly impact ribosome translation speed during elongation. Utilizing tRNA-seq, Ribo-seq and mRNA-Seq data, our package identifies differential ribosome stalling sites associated with variations in tRNA expression during translation elongation. Additionally, we provide tools to calculate changes in translation efficiency for Ribosome Stalling Signal (RSS) genes. By integrated Trio-translatome Profiling for Scanning (__TriPScan__) elongation regulatory events, our package can rapidly and accurately identify Ribosome Stalling Signal genes across the genome, providing valuable insights into the impact of tRNA expression on translation dynamics.
 
 ------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ Translation elongation is a critical step in the protein synthesis process, with
 
 ### Dependencies
 
-TriPScan requires R version \>= 3.3.0 and the following packages:
+__TriPScan__ requires R version \>= 3.3.0 and the following packages:
 
     Biostrings(>= 2.70.3)
     data.table(>= 1.15.4)
@@ -54,7 +54,7 @@ next section.
 
 ### Installation
 
-You can install the development version of TriPScan from
+You can install the development version of __TriPScan__ from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -64,7 +64,7 @@ devtools::install_github("cangjie2020/TriPScan")
 
 ### Loading the Package
 
-To load TriPScan run
+To load __TriPScan__ run
 
 ``` r
 library(TriPScan)
