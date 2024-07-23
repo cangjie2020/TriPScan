@@ -221,12 +221,14 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
       geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
       geom_bar(stat = "identity", position = "dodge", color = bar_color, fill = bar_color) +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
-      xlab(" ") +
-      ylab(" ") +
+      xlab("Distance from the start codon") +
+      ylab("RPF") +
       geom_hline(yintercept = -0.1, col = "black", lwd = 0.2, show.legend = FALSE) +
       theme_bw() +
       theme_classic() +
-      theme(axis.text.x = element_text(size = 20, colour = "black"), ) +
+      theme(axis.title.x=element_text(vjust=2, size=20))+
+      theme(axis.title.y=element_text(vjust=2, size=20))+
+      theme(axis.text.x = element_text(size = 20, colour = "black"), )  +
       theme(axis.text.y = element_text(size = 20, colour = "black"), ) +
       facet_grid(type ~ ., scales = "free_y") +
       theme(strip.text.y = element_text(size = 20, colour = "black"))
@@ -274,11 +276,13 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
       geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
       geom_bar(stat = "identity", position = "dodge", color = bar_color, fill = bar_color) +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
-      xlab(" ") +
-      ylab(" ") +
+      xlab("Distance from the start codon") +
+      ylab("RPF") +
       geom_hline(yintercept = -0.1, col = "black", lwd = 0.2, show.legend = FALSE) +
       theme_bw() +
       theme_classic() +
+      theme(axis.title.x=element_text(vjust=2, size=20))+
+      theme(axis.title.y=element_text(vjust=2, size=20))+
       theme(axis.text.x = element_text(size = 20, colour = "black"), ) +
       theme(axis.text.y = element_text(size = 20, colour = "black"), ) +
       facet_grid(type ~ ., scales = "free_y") +
