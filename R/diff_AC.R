@@ -31,8 +31,8 @@ diff_AC <- function(AC_count, condition, replicates, LFC = 0, Padj = 0.05, color
     AC_count <- AC_count[!grepl("mito", AC_count$tRNA), ]
     AC_count <- AC_count[!grepl("plastid", AC_count$tRNA), ]
     AC_count <- AC_count[, -c(1, ncol(AC_count))]
-
-    AA <- read.table("./inst/extdata/AA.txt", sep = "\t", header = T)
+    AA_path <- system.file("extdata/AA.txt",package = "TriPScan")
+    AA <- read.table(AA_path, sep = "\t", header = T)
     AC_count <- AC_count[which(AC_count$AA %in% AA$AA), ]
     AC_count <- merge(AA, AC_count[, 2:ncol(AC_count)], by = "Anticodon", all = T)
     AC_count[is.na(AC_count)] <- 0
