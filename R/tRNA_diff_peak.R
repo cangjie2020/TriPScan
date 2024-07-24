@@ -40,7 +40,7 @@
 tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
                            min_diff = 3, diff_tRNA_num = 8, padj = 0.05, LFC = 0, min_count = 10,
                            Non_translation_Elongation = 5, peak_method = "mean", only_both = F,
-                           bar_color = "#60D2D4", line_color = "#FE4A01") {
+                           bar_color = c("#BCE3A0","#60D2D4"), line_color = "#FE4A01") {
   tRNA <- tRNA$result
   gene <- geneinfo
   gene <- gene[which(gene$transcript_biotype == "protein_coding"), ]
@@ -224,11 +224,13 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
     codon1 <- unique(codon1)
     P <- ggplot(pic_tmp, aes(x = site, y = count)) +
       geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
-      geom_bar(stat = "identity", position = "dodge", color = bar_color, fill = bar_color) +
+      geom_bar(aes(fill = type, color = type),stat = "identity", position = "dodge") +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
       xlab("Distance from the start codon") +
       ylab("RPF") +
       geom_hline(yintercept = -0.1, col = "black", lwd = 0.2, show.legend = FALSE) +
+      scale_fill_manual(values = bar_color) +
+      scale_color_manual(values = bar_color) +
       theme_bw() +
       theme_classic() +
       theme(axis.title.x=element_text(vjust=2, size=20))+
@@ -236,7 +238,8 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
       theme(axis.text.x = element_text(size = 20, colour = "black"), )  +
       theme(axis.text.y = element_text(size = 20, colour = "black"), ) +
       facet_grid(type ~ ., scales = "free_y") +
-      theme(strip.text.y = element_text(size = 20, colour = "black"))
+      theme(strip.text.y = element_text(size = 20, colour = "black"))+
+      theme(legend.position = "none")
     name2 <- gene[which(gene$tx_name == i), 9]
     name2 <- unique(name2)
     plot_name <- paste(name2, codon1, sep = "_")
@@ -279,11 +282,13 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
     codon1 <- unique(codon1)
     P <- ggplot(pic_tmp, aes(x = site, y = count)) +
       geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
-      geom_bar(stat = "identity", position = "dodge", color = bar_color, fill = bar_color) +
+      geom_bar(aes(fill = type , color = type),stat = "identity", position = "dodge" ) +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
       xlab("Distance from the start codon") +
       ylab("RPF") +
       geom_hline(yintercept = -0.1, col = "black", lwd = 0.2, show.legend = FALSE) +
+      scale_fill_manual(values = bar_color) +
+      scale_color_manual(values = bar_color) +
       theme_bw() +
       theme_classic() +
       theme(axis.title.x=element_text(vjust=2, size=20))+
@@ -291,7 +296,8 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
       theme(axis.text.x = element_text(size = 20, colour = "black"), ) +
       theme(axis.text.y = element_text(size = 20, colour = "black"), ) +
       facet_grid(type ~ ., scales = "free_y") +
-      theme(strip.text.y = element_text(size = 20, colour = "black"))
+      theme(strip.text.y = element_text(size = 20, colour = "black"))+
+      theme(legend.position = "none")
     name2 <- gene[which(gene$tx_name == i), 9]
     name2 <- unique(name2)
     plot_name <- paste(name2, codon1, sep = "_")
