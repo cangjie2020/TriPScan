@@ -247,7 +247,7 @@ Integrate the outputs of the `EPA_res` and `diff_AC` functions to calculate diff
 EPA_path <- list(S1 = list(EPA_result[[1]],EPA_result[[2]]),
                  S2 = list(EPA_result[[3]],EPA_result[[4]]))
 condition <- c("Treat","Control")
-peak_pic <- tRNA_diff_peak(EPA_path = EPA_path,tRNA = tRNA_res, condition = condition,replicates = T, geneinfo = geneinfo, min_diff = 8, diff_tRNA_num = 5)
+peak_pic <- tRNA_diff_peak(EPA_path = EPA_path,tRNA = tRNA_res, condition = condition,replicates = T, geneinfo = geneinfo, min_diff = 3, diff_tRNA_num = 8)
 ```
 
 ### Output
