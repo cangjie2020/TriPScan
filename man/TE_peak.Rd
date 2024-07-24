@@ -14,7 +14,7 @@ TE_peak(
   gene_id = T,
   min_RNA = 10,
   min_CDS = 10,
-  color = c("#33adff", "#ff4d4d")
+  color = c("#BCE3A0", "#60D2D4")
 )
 }
 \arguments{
