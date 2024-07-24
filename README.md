@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-![TriPScan] <img src="man/figures/TriPScan.png" width="60%" />
+<img src="man/figures/TriPScan.png" width="80%" />
 
 # __TriPScan__
 
