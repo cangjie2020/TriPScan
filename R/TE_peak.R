@@ -28,7 +28,7 @@
 #' @export
 #'
 TE_peak <- function(RNA_count, CDS_count, gene, peak_pic, condition, replicates,
-                    gene_id = T, min_RNA = 10, min_CDS = 10, color = c("#33adff", "#ff4d4d")) {
+                    gene_id = T, min_RNA = 10, min_CDS = 10, color = c("#BCE3A0","#60D2D4")) {
   output <- list()
   gene <- gene[which(gene$transcript_biotype == "protein_coding"), ]
   gene <- gene[-which(gene$chrom == "MT"), ]
@@ -116,18 +116,18 @@ TE_peak <- function(RNA_count, CDS_count, gene, peak_pic, condition, replicates,
     text <- paste("P = ", signif(t_test_result$p.value, 3), sep = "")
     colnames(pic_tmp)[1] <- "count"
     P <- ggplot(pic_tmp, aes(x = condition, y = Mean, fill = condition)) +
-      geom_bar(stat = "identity", position = position_dodge(), color = "#8c8c8c", size = 0.5) +
-      geom_errorbar(aes(ymin = Mean - Sd, ymax = Mean + Sd), position = position_dodge(1), width = .5) +
-      geom_point(aes(x = condition, y = count), alpha = 1) +
+      geom_bar(stat = "identity", position = position_dodge(), color = "black", size = 1.25,width=0.8) +
+      geom_errorbar(aes(ymin = Mean - Sd, ymax = Mean + Sd), position = position_dodge(1), size = 1.25,width = 0.5) +
+      geom_point(aes(x = condition, y = count), alpha = 1,size = 2) +
       ylab("TE") +
-      annotate("text", x = 1.35, y = Inf, label = text, vjust = 1.5, hjust = -0.1, size = 7) +
       scale_fill_manual(values = color) +
       theme_bw() +
-      theme(axis.text.x = element_text(size = 20, angle = 45, vjust = 1, hjust = 1, color = "black"), ) +
+      theme(axis.text.x = element_text(size = 20, color = "black"), ) +
       theme(axis.text.y = element_text(size = 20, color = "black"), ) +
       theme(axis.title.x = element_text(size = 0, vjust = 0.5, hjust = 0.5, color = "black")) +
       theme(axis.title.y = element_text(size = 20, vjust = 0.5, hjust = 0.5, color = "black")) +
       theme(panel.grid.major = element_blank()) +
+      theme(panel.border = element_rect(color = "black", linewidth = 1.5)) +
       theme(panel.grid = element_blank()) +
       theme(legend.key = element_blank()) +
       theme(legend.title = element_text(size = 0, face = "bold", color = "black")) +
@@ -170,11 +170,10 @@ TE_peak <- function(RNA_count, CDS_count, gene, peak_pic, condition, replicates,
     text <- paste("P = ", signif(t_test_result$p.value, 3), sep = "")
     colnames(pic_tmp)[1] <- "count"
     P <- ggplot(pic_tmp, aes(x = condition, y = Mean, fill = condition)) +
-      geom_bar(stat = "identity", position = position_dodge(), color = "#8c8c8c", size = 0.5) +
-      geom_errorbar(aes(ymin = Mean - Sd, ymax = Mean + Sd), position = position_dodge(1), width = .5) +
-      geom_point(aes(x = condition, y = count), alpha = 1) +
+      geom_bar(stat = "identity", position = position_dodge(), color = "black", size = 1.25,width=0.8) +
+      geom_errorbar(aes(ymin = Mean - Sd, ymax = Mean + Sd), position = position_dodge(1), size = 1.25,width = 0.5) +
+      geom_point(aes(x = condition, y = count), alpha = 1,size = 2) +
       ylab("TE") +
-      annotate("text", x = 1.35, y = Inf, label = text, vjust = 1.5, hjust = -0.1, size = 7) +
       scale_fill_manual(values = color) +
       theme_bw() +
       theme(axis.text.x = element_text(size = 20, angle = 45, vjust = 1, hjust = 1, color = "black"), ) +
@@ -182,6 +181,7 @@ TE_peak <- function(RNA_count, CDS_count, gene, peak_pic, condition, replicates,
       theme(axis.title.x = element_text(size = 0, vjust = 0.5, hjust = 0.5, color = "black")) +
       theme(axis.title.y = element_text(size = 20, vjust = 0.5, hjust = 0.5, color = "black")) +
       theme(panel.grid.major = element_blank()) +
+      theme(panel.border = element_rect(color = "black", linewidth = 1.5)) +
       theme(panel.grid = element_blank()) +
       theme(legend.key = element_blank()) +
       theme(legend.title = element_text(size = 0, face = "bold", color = "black")) +
