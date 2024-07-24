@@ -18,7 +18,7 @@ tRNA_diff_peak(
   Non_translation_Elongation = 5,
   peak_method = "mean",
   only_both = F,
-  bar_color = "#60D2D4",
+  bar_color = c("#BCE3A0", "#60D2D4"),
   line_color = "#FE4A01"
 )
 }
