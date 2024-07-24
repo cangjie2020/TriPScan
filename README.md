@@ -1,7 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-![TriPScan](https://github.com/cangjie2020/TriPScan/blob/main/man/figures/TriPScan.png)
+<img src="man/figures/TriPScan.png" width="80%" />
 
 # __TriPScan__
 
@@ -340,7 +339,7 @@ Integrate ribo-seq with matched mRNA-Seq data to calculate the translation effic
 ``` r
 RNA<-read.table("../RNA/RNA.txt",sep = "\t",header = T)
 CDS<-read.table("../CDS/CDS.txt",sep = "\t",header = T)
-condition <- c("Heart","Liver")
+condition <- c("Treat","Control")
 TE_pic<- TE_peak(RNA_count = RNA,CDS_count = CDS,gene = geneinfo,peak_pic = peak_pic ,condition = condition ,replicates = 2 ,gene_id = F)
 ```
 ### Output
