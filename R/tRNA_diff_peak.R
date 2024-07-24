@@ -40,7 +40,7 @@
 tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
                            min_diff = 3, diff_tRNA_num = 8, padj = 0.05, LFC = 0, min_count = 10,
                            Non_translation_Elongation = 5, peak_method = "mean", only_both = F,
-                           bar_color = "#1F78B4", line_color = "#FE4A01") {
+                           bar_color = "#60D2D4", line_color = "#FE4A01") {
   tRNA <- tRNA$result
   gene <- geneinfo
   gene <- gene[which(gene$transcript_biotype == "protein_coding"), ]
@@ -179,7 +179,12 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
   output[["diff_peak"]] <- A
 
   if (only_both == T) {
-    A <- A[-which(A$ratio_Heart == 0 | A$ratio_Liver == 0), ]
+    if (any(A[,2] == 0) || any(A[,3] == 0)) {
+      A <- A[-which(A[,2] == 0 | A[,3] == 0), ]
+    }
+    else{
+      A <- A
+    }
   } else if (only_both == F) {
     A <- A
   }
