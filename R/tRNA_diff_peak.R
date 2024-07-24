@@ -223,7 +223,7 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
     codon1 <- as.character(codon1)
     codon1 <- unique(codon1)
     P <- ggplot(pic_tmp, aes(x = site, y = count)) +
-      geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
+      geom_vline(xintercept = site1, linetype = "dashed", col = line_color,  size=1) +
       geom_bar(aes(fill = type, color = type),stat = "identity", position = "dodge") +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
       xlab("Distance from the start codon") +
@@ -281,7 +281,7 @@ tRNA_diff_peak <- function(EPA_path, condition, replicates, tRNA, geneinfo,
     codon1 <- as.character(codon1)
     codon1 <- unique(codon1)
     P <- ggplot(pic_tmp, aes(x = site, y = count)) +
-      geom_vline(xintercept = site1, linetype = "dashed", col = line_color) +
+      geom_vline(xintercept = site1, linetype = "dashed", col = line_color, size=1) +
       geom_bar(aes(fill = type , color = type),stat = "identity", position = "dodge" ) +
       ggrepel::geom_text_repel(aes(label = A_Codon, y = count), size = 6) +
       xlab("Distance from the start codon") +
