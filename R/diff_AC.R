@@ -22,7 +22,7 @@
 #' @import ggplot2
 #' @export
 
-diff_AC <- function(AC_count, condition, replicates, LFC = 0, Padj = 0.05, color = c("orange", "purple", "grey")) {
+diff_AC <- function(AC_count, condition, replicates, LFC = 0, Padj = 0.05, color = c("#60D2D4", "#BCE3A0", "#d9d9d9")) {
   output <- list()
 
   if (file.exists(AC_count)) {
