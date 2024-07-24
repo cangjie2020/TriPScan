@@ -10,7 +10,7 @@ diff_AC(
   replicates,
   LFC = 0,
   Padj = 0.05,
-  color = c("orange", "purple", "grey")
+  color = c("#60D2D4", "#BCE3A0", "#d9d9d9")
 )
 }
 \arguments{
